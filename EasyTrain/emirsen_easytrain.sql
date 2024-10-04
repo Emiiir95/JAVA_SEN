@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : mysql-emirsen.alwaysdata.net
--- Généré le : dim. 29 sep. 2024 à 16:27
--- Version du serveur : 10.6.18-MariaDB
--- Version de PHP : 7.4.33
+-- Host: mysql-emirsen.alwaysdata.net
+-- Generation Time: Oct 04, 2024 at 02:32 PM
+-- Server version: 10.6.18-MariaDB
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `emirsen_easytrain`
+-- Database: `emirsen_easytrain`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Arret`
+-- Table structure for table `Arret`
 --
 
 CREATE TABLE `Arret` (
@@ -33,25 +33,24 @@ CREATE TABLE `Arret` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `Arret`
+-- Dumping data for table `Arret`
 --
 
 INSERT INTO `Arret` (`id`, `nom`) VALUES
+(1, 'Gare Saint-Lazare'),
 (2, 'Gare de Lyon'),
-(6, 'Gare de Lyon Part-Dieu'),
-(5, 'Gare de Marseille'),
-(4, 'Gare du Nord'),
 (3, 'Gare Montparnasse'),
-(1, 'Gare Saint-Lazare');
+(4, 'Gare du Nord'),
+(5, 'Gare de Marseille'),
+(6, 'Gare de Lyon Part-Dieu');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Trajet`
+-- Table structure for table `Trajet`
 --
 
 CREATE TABLE `Trajet` (
-  `id` int(3) NOT NULL,
   `code` varchar(30) NOT NULL,
   `temps_depart` datetime NOT NULL,
   `temps_arrivee` datetime NOT NULL,
@@ -60,18 +59,18 @@ CREATE TABLE `Trajet` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `Trajet`
+-- Dumping data for table `Trajet`
 --
 
-INSERT INTO `Trajet` (`id`, `code`, `temps_depart`, `temps_arrivee`, `arret_depart_id`, `arret_arrivee_id`) VALUES
-(1, 'TRAJET001', '2024-09-29 10:00:00', '2024-09-29 10:30:00', 1, 2),
-(2, 'TRAJET002', '2024-09-29 11:00:00', '2024-09-29 12:00:00', 3, 4),
-(3, 'TRAJET003', '2024-09-29 14:00:00', '2024-09-29 15:00:00', 5, 6);
+INSERT INTO `Trajet` (`code`, `temps_depart`, `temps_arrivee`, `arret_depart_id`, `arret_arrivee_id`) VALUES
+('TRAJET001', '2024-09-29 10:00:00', '2024-09-29 10:30:00', 1, 2),
+('TRAJET002', '2024-09-29 11:00:00', '2024-09-29 12:00:00', 3, 4),
+('TRAJET003', '2024-09-29 14:00:00', '2024-09-29 15:00:00', 5, 6);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Utilisateur`
+-- Table structure for table `Utilisateur`
 --
 
 CREATE TABLE `Utilisateur` (
@@ -85,7 +84,7 @@ CREATE TABLE `Utilisateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `Utilisateur`
+-- Dumping data for table `Utilisateur`
 --
 
 INSERT INTO `Utilisateur` (`id`, `login`, `mdp`, `nom`, `prenom`, `date_embauche`, `role`) VALUES
@@ -94,60 +93,52 @@ INSERT INTO `Utilisateur` (`id`, `login`, `mdp`, `nom`, `prenom`, `date_embauche
 (3, 'elPaul', 'monMdpSecret3', 'Martin', 'Paul', '2024-06-29 10:00:00', 'EMPLOYE');
 
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `Arret`
+-- Indexes for table `Arret`
 --
 ALTER TABLE `Arret`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nom` (`nom`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `Trajet`
+-- Indexes for table `Trajet`
 --
 ALTER TABLE `Trajet`
-  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `code` (`code`),
   ADD KEY `arret_depart_id` (`arret_depart_id`),
   ADD KEY `arret_arrivee_id` (`arret_arrivee_id`);
 
 --
--- Index pour la table `Utilisateur`
+-- Indexes for table `Utilisateur`
 --
 ALTER TABLE `Utilisateur`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `login` (`login`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `Arret`
+-- AUTO_INCREMENT for table `Arret`
 --
 ALTER TABLE `Arret`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT pour la table `Trajet`
---
-ALTER TABLE `Trajet`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT pour la table `Utilisateur`
+-- AUTO_INCREMENT for table `Utilisateur`
 --
 ALTER TABLE `Utilisateur`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Contraintes pour les tables déchargées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `Trajet`
+-- Constraints for table `Trajet`
 --
 ALTER TABLE `Trajet`
   ADD CONSTRAINT `Trajet_ibfk_1` FOREIGN KEY (`arret_depart_id`) REFERENCES `Arret` (`id`),

@@ -21,5 +21,3 @@ Emir SEN, 29/09/2024
     - clé étrangère : - arret_depart_id référence à Arret(id)
                       - arret_arrivee_id référence à Arret(id)
     - champs unique : __
-    
-
