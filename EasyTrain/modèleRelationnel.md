@@ -16,10 +16,10 @@ Emir SEN, 29/09/2024
     - champs unique : __
 
 ### Trajet
-    - arret(id: int(3), code: varchar(30), temps_depart: datetime, temps_arrivee: datetime, arret_depart_id: int(3), arret_arrivee_id: int(3))
-    - clé primaire : id
+    - trajet(code: varchar(30), temps_depart: datetime, temps_arrivee: datetime, arret_depart_id: int(3), arret_arrivee_id: int(3))
+    - clé primaire : code
     - clé étrangère : - arret_depart_id référence à Arret(id)
                       - arret_arrivee_id référence à Arret(id)
-    - champs unique : code
+    - champs unique : __
     
 

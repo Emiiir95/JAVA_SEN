@@ -10,6 +10,7 @@ package fr.esiee;
 import fr.esiee.modele.Role;
 import fr.esiee.modele.Utilisateur;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import fr.esiee.modele.Arret;
 import fr.esiee.modele.Trajet;
 
@@ -52,14 +53,14 @@ public class Main {
         Arret arret3 = new Arret(3, "Marseille");
         Arret arret4 = new Arret(4, "Toulouse");
 
-        Trajet trajet1 = new Trajet("train 1", LocalDate.of(2024, 9, 29),
-                LocalDate.of(2024, 9, 29), arret1, arret2);
+        Trajet trajet1 = new Trajet("train 1", LocalDateTime.of(2024, 9, 29, 10, 0),
+                LocalDateTime.of(2024, 9, 29, 10, 0), arret1, arret2);
 
-        Trajet trajet2 = new Trajet("train 2", LocalDate.of(2024, 9, 30),
-                LocalDate.of(2024, 9, 30), arret1, arret3);
+        Trajet trajet2 = new Trajet("train 2", LocalDateTime.of(2024, 9, 30, 13, 0),
+                LocalDateTime.of(2024, 9, 30, 13, 0), arret1, arret3);
 
-        trajet2.setTempsDepart(LocalDate.of(2024, 10, 1));
-        trajet2.setTempsArrivee(LocalDate.of(2024, 10, 1));
+        trajet2.setTempsDepart(LocalDateTime.of(2024, 10, 1, 19, 0));
+        trajet2.setTempsArrivee(LocalDateTime.of(2024, 10, 1, 19, 0));
         trajet2.setArretArrivee(arret4);
 
         System.out.println("\nTrajet 1 :");

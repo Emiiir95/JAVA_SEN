@@ -1,18 +1,18 @@
 package fr.esiee.modele;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Trajet {
     private String code;
-    private LocalDate tempsDepart;
-    private LocalDate tempsArrivee;
+    private LocalDateTime tempsDepart;
+    private LocalDateTime tempsArrivee;
     private Arret arretDepart;
     private Arret arretArrivee;
 
     public Trajet() {
     }
 
-    public Trajet(String code, LocalDate tempsDepart,LocalDate tempsArrivee, Arret arretDepart, Arret arretArrivee) {
+    public Trajet(String code, LocalDateTime tempsDepart,LocalDateTime tempsArrivee, Arret arretDepart, Arret arretArrivee) {
         this.code = code;
         this.tempsDepart = tempsDepart;
         this.tempsArrivee = tempsArrivee;
@@ -28,19 +28,19 @@ public class Trajet {
         this.code = code;
     }
 
-    public LocalDate getTempsDepart() {
+    public LocalDateTime getTempsDepart() {
         return tempsDepart;
     }
 
-    public void setTempsDepart(LocalDate tempsDepart) {
+    public void setTempsDepart(LocalDateTime tempsDepart) {
         this.tempsDepart = tempsDepart;
     }
 
-    public LocalDate getTempsArrivee() {
+    public LocalDateTime getTempsArrivee() {
         return tempsArrivee;
     }
 
-    public void setTempsArrivee(LocalDate tempsArrivee) {
+    public void setTempsArrivee(LocalDateTime tempsArrivee) {
         this.tempsArrivee = tempsArrivee;
     }
 
