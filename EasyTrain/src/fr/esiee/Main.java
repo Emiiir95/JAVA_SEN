@@ -54,13 +54,13 @@ public class Main {
         Arret arret4 = new Arret(4, "Toulouse");
 
         Trajet trajet1 = new Trajet("train 1", LocalDateTime.of(2024, 9, 29, 10, 0),
-                LocalDateTime.of(2024, 9, 29, 10, 0), arret1, arret2);
+                LocalDateTime.of(2024, 9, 29, 11, 56), arret1, arret2);
 
         Trajet trajet2 = new Trajet("train 2", LocalDateTime.of(2024, 9, 30, 13, 0),
-                LocalDateTime.of(2024, 9, 30, 13, 0), arret1, arret3);
+                LocalDateTime.of(2024, 9, 30, 20, 25), arret1, arret3);
 
-        trajet2.setTempsDepart(LocalDateTime.of(2024, 10, 1, 19, 0));
-        trajet2.setTempsArrivee(LocalDateTime.of(2024, 10, 1, 19, 0));
+        trajet2.setTempsDepart(LocalDateTime.of(2024, 10, 1, 19, 25));
+        trajet2.setTempsArrivee(LocalDateTime.of(2024, 10, 2, 02, 50));
         trajet2.setArretArrivee(arret4);
 
         System.out.println("\nTrajet 1 :");
