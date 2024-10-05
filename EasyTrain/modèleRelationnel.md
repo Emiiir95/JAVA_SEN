@@ -28,6 +28,7 @@ Emir SEN, 29/09/2024
     SELECT * FROM Utilisateur
     WHERE login = 'emiiir_95';
 
+
 ### 2/ Lister les utilisateurs qui sont admin:
     SELECT * FROM Utilisateur 
     WHERE role = 'ADMIN';
