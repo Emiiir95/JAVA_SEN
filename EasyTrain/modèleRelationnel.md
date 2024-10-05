@@ -22,12 +22,13 @@ Emir SEN, 29/09/2024
                       - arret_arrivee_id référence à Arret(id)
     - champs unique : __
 
+---
+
 ## Requête BDD potentiel
 
 ### 1/ Récupérer l'utilisateur qui a un login = emiiir_95:
     SELECT * FROM Utilisateur
     WHERE login = 'emiiir_95';
-
 
 ### 2/ Lister les utilisateurs qui sont admin:
     SELECT * FROM Utilisateur 
