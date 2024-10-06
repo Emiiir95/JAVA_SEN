@@ -15,8 +15,13 @@ public class TestJDBC {
         String userDistant = "emirsen";
         String pwdDistant = "Jesuistoutennoir95";
 
-        Connection connectionLocal = null; // Déclaration de la connexion locale
-        Connection connectionDistant = null; // Déclaration de la connexion distante
+        Connection connectionLocal = null;
+        Connection connectionDistant = null;
+
+        // avant de run, commande pour lancer la BDD dans le terminal
+        // > brew services start mariadb
+        // Pour fermer la BDD
+        // > brew services stop mariadb
 
         try {
             // Création d'une connexion à la BDD locale
