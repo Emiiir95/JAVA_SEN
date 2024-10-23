@@ -88,9 +88,9 @@ CREATE TABLE `Utilisateur` (
 --
 
 INSERT INTO `Utilisateur` (`id`, `login`, `mdp`, `nom`, `prenom`, `date_embauche`, `role`) VALUES
-(1, 'emiiir_95', 'monMdpSecret1', 'SEN', 'Emir', '2024-02-29 09:00:00', 'ADMIN'),
-(2, 'mamaWata', 'monMdpSecret2', 'Mami', 'Wata', '2024-04-29 09:30:00', 'EMPLOYE'),
-(3, 'elPaul', 'monMdpSecret3', 'Martin', 'Paul', '2024-06-29 10:00:00', 'EMPLOYE');
+(1, 'emiiir_95', SHA2('emiiir_95',256), 'SEN', 'Emir', '2024-02-29 09:00:00', 'ADMIN'),
+(2, 'mamaWata', SHA2('mamaWata',256), 'Mami', 'Wata', '2024-04-29 09:30:00', 'EMPLOYE'),
+(3, 'elPaul', SHA2('elPaul',256), 'Martin', 'Paul', '2024-06-29 10:00:00', 'EMPLOYE');
 
 --
 -- Indexes for dumped tables
