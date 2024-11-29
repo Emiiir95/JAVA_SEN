@@ -19,11 +19,10 @@ public class HelloController {
         if (!inputName.isEmpty()) {
             //2- afficher dans le label l_welcomeText le message de bienvenu avec le inputName
             l_welcomeText.setText("Bienvenue, " + inputName + "!");
-            l_welcomeText.setTextFill(Paint.valueOf("black")); // Couleur noire pour un message valide
+            l_welcomeText.setTextFill(Paint.valueOf("black"));
         }
         //sinon :
         else {
-
             //3- changer la couleur du text du label l_welcomeText en rouge et afficher un text "Erreur.. saisi"
             l_welcomeText.setText("Erreur : veuillez saisir un nom.");
             l_welcomeText.setTextFill(Paint.valueOf("red"));
