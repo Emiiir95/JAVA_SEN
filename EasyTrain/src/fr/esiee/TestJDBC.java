@@ -218,7 +218,7 @@ public class TestJDBC {
 
             System.out.println("\n---------- Voici les utilisateurs ----------");
             while (resultSet.next()) {
-                String id = resultSet.getString("id");
+                int id = resultSet.getInt("id");
                 String login = resultSet.getString("login");
                 String prenom = resultSet.getString("prenom");
                 String nom = resultSet.getString("nom");
