@@ -16,7 +16,7 @@ public class HelloApplication extends Application {
         // scene représente le cadre qui structure la fenêtre et accueille le panel principal
         // panel principal = rootPanel
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        stage.setTitle("JavaFXTEST");
         stage.setScene(scene);
         stage.show(); // permet de rendre visible la fenêtre
     }

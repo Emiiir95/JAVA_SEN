@@ -15,7 +15,7 @@ public class HelloController {
     public void onHelloButtonClick() {
         //1- récupérer le inputName saisie par l'utilisateur dans tf_inputName
         String inputName = tf_inputName.getText();
-        // Sie le nom est saisi :
+        // Si le nom est saisi :
         if (!inputName.isEmpty()) {
             //2- afficher dans le label l_welcomeText le message de bienvenu avec le inputName
             l_welcomeText.setText("Bienvenue, " + inputName + "!");
@@ -27,6 +27,7 @@ public class HelloController {
             l_welcomeText.setText("Erreur : veuillez saisir un nom.");
             l_welcomeText.setTextFill(Paint.valueOf("red"));
         }
+        tf_inputName.clear();
     }
 }
 
