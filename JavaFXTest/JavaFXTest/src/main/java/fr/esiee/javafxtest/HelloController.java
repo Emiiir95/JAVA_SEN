@@ -14,7 +14,7 @@ public class HelloController {
 
     public void onHelloButtonClick() {
         //1- récupérer le inputName saisie par l'utilisateur dans tf_inputName
-        String inputName = tf_inputName.getText().trim();
+        String inputName = tf_inputName.getText();
         // Sie le nom est saisi :
         if (!inputName.isEmpty()) {
             //2- afficher dans le label l_welcomeText le message de bienvenu avec le inputName
