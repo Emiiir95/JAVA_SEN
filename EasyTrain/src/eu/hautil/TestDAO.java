@@ -1,6 +1,7 @@
 package eu.hautil;
 
 import eu.hautil.dao.EasyTrainDAO;
+import fr.esiee.modele.Arret;
 import fr.esiee.modele.Utilisateur;
 import fr.esiee.modele.Role;
 
@@ -46,6 +47,43 @@ public class TestDAO {
             System.out.println("Nouvel utilisateur trouvé : " + utilisateurAjoute.getNom() + " " + utilisateurAjoute.getPrenom());
         } else {
             System.out.println("Nouvel utilisateur non trouvé.");
+        }
+
+        // Test de la méthode getArretById
+        System.out.println("\n===== Test de getArretById =====");
+        Arret arret = dao.getArretById(1);
+        if (arret != null) {
+            System.out.println("Arrêt trouvé : " + arret.getNom());
+        } else {
+            System.out.println("Aucun arrêt trouvé avec cet ID.");
+        }
+
+        // Test de la méthode getAllArrets
+        System.out.println("\n===== Test de getAllArrets =====");
+        List<Arret> arrets = dao.getAllArrets();
+        if (!arrets.isEmpty()) {
+            arrets.forEach(a -> System.out.println("Arrêt : " + a.getNom()));
+        } else {
+            System.out.println("Aucun arrêt trouvé dans la base de données.");
+        }
+
+        // Test de la méthode ajouterArret
+        System.out.println("\n===== Test de ajouterArret =====");
+        Arret nouvelArret = new Arret(0, "Paris Gare de Lyon");
+        boolean isArretAdded = dao.ajouterArret(nouvelArret);
+        if (isArretAdded) {
+            System.out.println("Arrêt ajouté avec succès : ID généré = " + nouvelArret.getId());
+        } else {
+            System.out.println("Échec de l'ajout de l'arrêt.");
+        }
+
+        // Vérification que l'arrêt ajouté est présent
+        System.out.println("\n===== Vérification de l'ajout d'un arrêt =====");
+        Arret arretAjoute = dao.getArretById(nouvelArret.getId());
+        if (arretAjoute != null) {
+            System.out.println("Nouvel arrêt trouvé : " + arretAjoute.getNom());
+        } else {
+            System.out.println("Nouvel arrêt non trouvé.");
         }
     }
 }
