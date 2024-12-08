@@ -2,10 +2,13 @@ package eu.hautil;
 
 import eu.hautil.dao.EasyTrainDAO;
 import fr.esiee.modele.Arret;
+import fr.esiee.modele.Trajet;
 import fr.esiee.modele.Utilisateur;
 import fr.esiee.modele.Role;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class TestDAO {
@@ -84,6 +87,43 @@ public class TestDAO {
             System.out.println("Nouvel arrêt trouvé : " + arretAjoute.getNom());
         } else {
             System.out.println("Nouvel arrêt non trouvé.");
+        }
+
+        String trajetCode = "TRAJET001";  // Utilisez un code de trajet valide
+        Trajet trajet = dao.getTrajetById(trajetCode);
+        if (trajet != null) {
+            System.out.println("Trajet récupéré par ID : " + trajet);
+        } else {
+            System.out.println("Aucun trajet trouvé avec ce code : " + trajetCode);
+        }
+
+        // Test de la méthode getAllTrajets
+        List<Trajet> trajets = dao.getAllTrajets();
+        System.out.println("Liste de tous les trajets : ");
+        for (Trajet t : trajets) {
+            System.out.println(t);
+        }
+
+        // Test de la méthode ajouterTrajet avec LocalDateTime
+        Arret arretDepart = new Arret(1, "Gare Saint-Lazare");
+        Arret arretArrivee = new Arret(2, "Gare de Lyon");
+
+        // Conversion des chaînes de caractères en LocalDateTime
+        String stringTempsDepart = "2024-12-09 08:00:00";
+        String stringTempsArrivee = "2024-12-09 09:00:00";
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime tempsDepart = LocalDateTime.parse(stringTempsDepart, formatter);
+        LocalDateTime tempsArrivee = LocalDateTime.parse(stringTempsArrivee, formatter);
+
+        // Création d'un nouveau trajet avec LocalDateTime
+        Trajet nouveauTrajet = new Trajet("TRAJET004", tempsDepart, tempsArrivee, arretDepart, arretArrivee);
+
+        boolean ajoutReussi = dao.ajouterTrajet(nouveauTrajet);
+        if (ajoutReussi) {
+            System.out.println("Trajet ajouté avec succès !");
+        } else {
+            System.out.println("Échec de l'ajout du trajet.");
         }
     }
 }

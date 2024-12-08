@@ -1,6 +1,7 @@
 package eu.hautil.dao;
 
 import fr.esiee.modele.Arret;
+import fr.esiee.modele.Trajet;
 import fr.esiee.modele.Utilisateur;
 import fr.esiee.modele.Role;
 
@@ -144,4 +145,77 @@ public class EasyTrainDAO {
         Role role = Role.valueOf(rs.getString("role"));
         return new Utilisateur(id, login, mdp, nom, prenom, dateEmbauche, role);
     }
+
+    // Récupérer un trajet par son identifiant unique
+    public Trajet getTrajetById(String code) {
+        String query = "SELECT t.*, a1.nom AS depart_nom, a2.nom AS arrivee_nom " +
+                "FROM Trajet t " +
+                "JOIN Arret a1 ON t.arret_depart_id = a1.id " +
+                "JOIN Arret a2 ON t.arret_arrivee_id = a2.id " +
+                "WHERE t.code = ?";
+        try (Connection connection = getConnexion();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, code);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    Arret arretDepart = new Arret(rs.getInt("arret_depart_id"), rs.getString("depart_nom"));
+                    Arret arretArrivee = new Arret(rs.getInt("arret_arrivee_id"), rs.getString("arrivee_nom"));
+                    return new Trajet(rs.getString("code"),
+                            rs.getTimestamp("temps_depart").toLocalDateTime(),
+                            rs.getTimestamp("temps_arrivee").toLocalDateTime(),
+                            arretDepart, arretArrivee);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    // Récupérer la liste de tous les trajets et leurs arrêts respectifs
+    public List<Trajet> getAllTrajets() {
+        List<Trajet> trajets = new ArrayList<>();
+        String query = "SELECT t.*, a1.nom AS depart_nom, a2.nom AS arrivee_nom " +
+                "FROM Trajet t " +
+                "JOIN Arret a1 ON t.arret_depart_id = a1.id " +
+                "JOIN Arret a2 ON t.arret_arrivee_id = a2.id";
+        try (Connection connection = getConnexion();
+             PreparedStatement stmt = connection.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                Arret arretDepart = new Arret(rs.getInt("arret_depart_id"), rs.getString("depart_nom"));
+                Arret arretArrivee = new Arret(rs.getInt("arret_arrivee_id"), rs.getString("arrivee_nom"));
+                trajets.add(new Trajet(rs.getString("code"),
+                        rs.getTimestamp("temps_depart").toLocalDateTime(),
+                        rs.getTimestamp("temps_arrivee").toLocalDateTime(),
+                        arretDepart, arretArrivee));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return trajets;
+    }
+
+
+    // Ajouter un trajet
+    public boolean ajouterTrajet(Trajet t) {
+        String query = "INSERT INTO Trajet (code, temps_depart, temps_arrivee, arret_depart_id, arret_arrivee_id) " +
+                "VALUES (?, ?, ?, ?, ?)";
+        try (Connection connection = getConnexion();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, t.getCode());
+            stmt.setTimestamp(2, Timestamp.valueOf(t.getTempsDepart()));
+            stmt.setTimestamp(3, Timestamp.valueOf(t.getTempsArrivee()));
+            stmt.setInt(4, t.getArretDepart().getId());
+            stmt.setInt(5, t.getArretArrivee().getId());
+
+            int affectedRows = stmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }
