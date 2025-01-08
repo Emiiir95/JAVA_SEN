@@ -1,6 +1,6 @@
-package eu.hautil;
+package fr.esiee;
 
-import eu.hautil.dao.EasyTrainDAO;
+import fr.esiee.dao.EasyTrainDAO;
 import fr.esiee.modele.Arret;
 import fr.esiee.modele.Trajet;
 import fr.esiee.modele.Utilisateur;
