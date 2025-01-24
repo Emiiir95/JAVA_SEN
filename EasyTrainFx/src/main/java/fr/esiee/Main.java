@@ -7,10 +7,7 @@ TP applicative
 package fr.esiee;
 
 
-import fr.esiee.modele.Arret;
-import fr.esiee.modele.Role;
-import fr.esiee.modele.Trajet;
-import fr.esiee.modele.Utilisateur;
+import fr.esiee.modele.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -49,10 +46,10 @@ public class Main {
         System.out.println("Date d'embauche: " + utilisateur2.getDateEmbauche());
         System.out.println("Rôle: " + utilisateur2.getRole());
 
-        Arret arret1 = new Arret(1, "Gare de Lyon");
-        Arret arret2 = new Arret(2, "Lyon");
-        Arret arret3 = new Arret(3, "Marseille");
-        Arret arret4 = new Arret(4, "Toulouse");
+        Arret arret1 = new Arret(1, "Gare de Lyon", TypeArret.INTERMEDIAIRE);
+        Arret arret2 = new Arret(2, "Lyon", TypeArret.TERMINUS);
+        Arret arret3 = new Arret(3, "Marseille", TypeArret.TERMINUS);
+        Arret arret4 = new Arret(4, "Toulouse", TypeArret.INTERMEDIAIRE);
 
         Trajet trajet1 = new Trajet("train 1", LocalDateTime.of(2024, 9, 29, 10, 0),
                 LocalDateTime.of(2024, 9, 29, 11, 56), arret1, arret2);

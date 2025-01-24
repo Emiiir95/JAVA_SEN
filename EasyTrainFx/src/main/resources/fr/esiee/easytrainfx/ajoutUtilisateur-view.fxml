@@ -50,7 +50,7 @@
     <!-- Boutons d'action -->
     <HBox alignment="CENTER" spacing="20.0">
         <children>
-            <Button fx:id="btn_reset" text="Réinitialiser" onAction="#onResetFields" />
+            <!-- <Button fx:id="btn_reset" text="Réinitialiser" onAction="#onResetFields" /> -->
             <Button fx:id="btn_addUser" text="Ajouter" onAction="#onAddUser" />
         </children>
     </HBox>

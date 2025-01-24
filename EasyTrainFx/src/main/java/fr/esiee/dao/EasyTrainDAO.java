@@ -1,9 +1,6 @@
 package fr.esiee.dao;
 
-import fr.esiee.modele.Arret;
-import fr.esiee.modele.Role;
-import fr.esiee.modele.Trajet;
-import fr.esiee.modele.Utilisateur;
+import fr.esiee.modele.*;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -87,7 +84,8 @@ public class EasyTrainDAO {
             stmt.setInt(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    return new Arret(rs.getInt("id"), rs.getString("nom"));
+                    TypeArret typeArret = TypeArret.valueOf(rs.getString("type_arret").toUpperCase());
+                    return new Arret(rs.getInt("id"), rs.getString("nom"), typeArret);
                 }
             }
         } catch (SQLException e) {
@@ -104,7 +102,8 @@ public class EasyTrainDAO {
              PreparedStatement stmt = connection.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                arrets.add(new Arret(rs.getInt("id"), rs.getString("nom")));
+                TypeArret typeArret = TypeArret.valueOf(rs.getString("type_arret").toUpperCase());
+                arrets.add(new Arret(rs.getInt("id"), rs.getString("nom"), typeArret));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -158,8 +157,9 @@ public class EasyTrainDAO {
             stmt.setString(1, code);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    Arret arretDepart = new Arret(rs.getInt("arret_depart_id"), rs.getString("depart_nom"));
-                    Arret arretArrivee = new Arret(rs.getInt("arret_arrivee_id"), rs.getString("arrivee_nom"));
+                    TypeArret typeArret = TypeArret.valueOf(rs.getString("type_arret").toUpperCase());
+                    Arret arretDepart = new Arret(rs.getInt("arret_depart_id"), rs.getString("depart_nom"), typeArret);
+                    Arret arretArrivee = new Arret(rs.getInt("arret_arrivee_id"), rs.getString("arrivee_nom"), typeArret);
                     return new Trajet(rs.getString("code"),
                             rs.getTimestamp("temps_depart").toLocalDateTime(),
                             rs.getTimestamp("temps_arrivee").toLocalDateTime(),
@@ -184,8 +184,9 @@ public class EasyTrainDAO {
              PreparedStatement stmt = connection.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                Arret arretDepart = new Arret(rs.getInt("arret_depart_id"), rs.getString("depart_nom"));
-                Arret arretArrivee = new Arret(rs.getInt("arret_arrivee_id"), rs.getString("arrivee_nom"));
+                TypeArret typeArret = TypeArret.valueOf(rs.getString("type_arret").toUpperCase());
+                Arret arretDepart = new Arret(rs.getInt("arret_depart_id"), rs.getString("depart_nom"), typeArret);
+                Arret arretArrivee = new Arret(rs.getInt("arret_arrivee_id"), rs.getString("arrivee_nom"), typeArret);
                 trajets.add(new Trajet(rs.getString("code"),
                         rs.getTimestamp("temps_depart").toLocalDateTime(),
                         rs.getTimestamp("temps_arrivee").toLocalDateTime(),

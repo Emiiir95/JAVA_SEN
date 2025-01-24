@@ -1,10 +1,7 @@
 package fr.esiee;
 
 import fr.esiee.dao.EasyTrainDAO;
-import fr.esiee.modele.Arret;
-import fr.esiee.modele.Role;
-import fr.esiee.modele.Trajet;
-import fr.esiee.modele.Utilisateur;
+import fr.esiee.modele.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -72,7 +69,7 @@ public class TestDAO {
 
         // Test de la méthode ajouterArret
         System.out.println("\n===== Test de ajouterArret =====");
-        Arret nouvelArret = new Arret(0, "Paris Gare de Lyon");
+        Arret nouvelArret = new Arret(0, "Paris Gare Test", TypeArret.TERMINUS);
         boolean isArretAdded = dao.ajouterArret(nouvelArret);
         if (isArretAdded) {
             System.out.println("Arrêt ajouté avec succès : ID généré = " + nouvelArret.getId());
@@ -105,8 +102,8 @@ public class TestDAO {
         }
 
         // Test de la méthode ajouterTrajet avec LocalDateTime
-        Arret arretDepart = new Arret(1, "Gare Saint-Lazare");
-        Arret arretArrivee = new Arret(2, "Gare de Lyon");
+        Arret arretDepart = new Arret(1, "Gare Saint-Lazare", TypeArret.INTERMEDIAIRE);
+        Arret arretArrivee = new Arret(2, "Gare de Lyon", TypeArret.TERMINUS);
 
         // Conversion des chaînes de caractères en LocalDateTime
         String stringTempsDepart = "2024-12-09 08:00:00";
